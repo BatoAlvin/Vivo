@@ -55,7 +55,7 @@ color:#000;
 
                                  <div class="form-group">
                                   <label for="recipient-name" class="coll">Name</label>
-                                  <select class="form-control" name="client_id" required>
+                                  <select class="form-control" name="client_id" id="source-field" required>
                                     <option selected disabled value=''>Choose Name</option>
                                         @foreach($client as $clients)
 
@@ -64,6 +64,20 @@ color:#000;
                                         @endforeach
                                    </select>
                                 </div>
+
+
+
+                                <div class="form-group">
+                                    <label for="exampleFormControlTextarea1" style="font-weight:bolder;">Units</label>
+                                    <input type="text" class="form-control" name="units" id="sub_avail" readonly>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label for="exampleFormControlTextarea1" style="font-weight:bolder;">Allocate Units</label>
+                                    <input type="number" class="form-control" name="unit_id" id="">
+                                </div>
+
 
 
                                 <div class="form-group">
@@ -108,25 +122,30 @@ color:#000;
                                 <th>No</th>
                                 <th>Client</th>
                                 <th>Card Number</th>
+                                <th>Units</th>
 
                                 <th>View</th>
 
                             </tr>
                         </thead>
                         <tbody>
+
                             @foreach ($vivo as $vivos)
                             <tr>
                               <td>{{$loop->iteration}}</td>
-                                <td>{{$vivos->client->clientname}}</td>
+                                <td>
+                                    {{$vivos->client->clientname}}</td>
 
                                 <td>{{$vivos->card->cardnumber}}</td>
+                                <td>{{$vivos->unit_id}}</td>
 
                                 </td>
 
 
                                 <td>
-                                    <a href="{{url('vivo/'.$vivos->id )}}"<button class="btn btn-success"><i class="fa fa-eye" style="color:#fff;"></i></button></a>
-                                    <button type="button" class="btn btn-primary" data-toggle="modal"  data-target="#exampleModal{{ $vivos->id }}"><i class='fa fa-edit'>
+                                    <div style="display:flex;">
+                                    <a href="{{url('vivo/'.$vivos->id )}}"<button class="btn btn-success" style="margin-right:10px;"><i class="fa fa-eye" style="color:#fff;"></i></button></a>
+                                    <button type="button" class="btn btn-primary" style="margin-right:10px;" data-toggle="modal"  data-target="#exampleModal{{ $vivos->id }}"><i class='fa fa-edit'>
                                        </i>
                                        </button>
 
@@ -168,23 +187,86 @@ color:#000;
                                            </div>
                                          </div>
 
+                                         <form action="{{route('vivo.destroy', $vivos->id)}}" method="post">
+                                            {{csrf_field()}}
+                                            <input name="_method" type="hidden" value="DELETE">
+                                            <button class="btn btn-danger" style="margin-right:10px;" onclick="return confirm('Are you sure?')"><i class="fa fa-bug"></i></button>
+                                            </form>
 
 
-                                      <form action="{{route('vivo.destroy', $vivos->id)}}" method="post">
+                                      {{-- <form action="{{route('vivo.destroy', $vivos->id)}}" method="post">
                                         {{csrf_field()}}
                                         <input name="_method" type="hidden" value="DELETE">
                                         <button class="btn btn-danger"  onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i></button>
-                                        </form>
+                                        </form> --}}
+                                    </div>
+
+
+
+                                    <button type="button" class="btn btn-primary" style="margin-right:10px;" data-toggle="modal"  data-target="#exampleModall{{ $vivos->id }}"><i class='fa fa-edit'>
+                                    gh</i>
+                                    </button>
+
+                                    <div class="modal fade" id="exampleModall{{ $vivos->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                          <div class="modal-content">
+                                            <div class="modal-header">
+                                              <h5 class="modal-title" id="exampleModalLabel">Edit {{ $vivos->client->clientname }}</h5>
+                                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                              </button>
+                                            </div>
+                                            <div class="modal-body">
+                                              <form action="useunits/{{ $vivos->id }}" method='post'>
+
+                                                @method('PUT')
+                                                         <input id='token' type="hidden" name="_token" value="{{ csrf_token() }}" />
+
+                                                <div class="form-group">
+                                                  <label for="recipient-name" class="col-form-label">Unit Name</label>
+                                                  <input type="text" class="form-control"  name="units">
+                                                </div>
+
+
+
+
+
+                                                <div class="modal-footer">
+                                              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                              <button type="submit" class="btn btn-primary">Update Unit Now</button>
+                                            </div>
+                                              </form>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
                                     </td>
+
                             </tr>
                             @endforeach
                         </tbody>
 
                     </table>
+
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script>
+    //Fetching buying price from products table
+document.getElementById('source-field').addEventListener('change', function() {
+    var sourceField = this.value;
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', '/quantityavailable/' + sourceField, true);
+    xhr.onload = function() {
+        if (this.status === 200) {
+            var datas = JSON.parse(this.responseText);
+            document.getElementById('sub_avail').value = datas;
+        }
+    };
+    xhr.send();
+});
+</script>
 
  @endsection

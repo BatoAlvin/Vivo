@@ -36,8 +36,33 @@ class ClientsController extends Controller
      */
     public function store(Request $request)
     {
+        $data = Clients::orderBy('id','desc')->first();
+        if(!$data)
+        {
+            $increment_last_number = 1;
+            $mynumber = 'KHS0001';
+        }else{
+            $increment_last_number = $data->rec_id+1;
+            $last_number_length = strlen($increment_last_number);
+            if($last_number_length<2){
+                $mynumber = 'KHS000'.$increment_last_number;
+            }
+            else if($last_number_length<3){
+                $mynumber = 'KHS00'.$increment_last_number;
+            }
+            else if($last_number_length<4){
+                $mynumber = 'KHS0'.$increment_last_number;
+            }
+            else{
+                $mynumber = 'KHS'.$increment_last_number;
+            }
+        }
+
         $post_service = Clients::create([
             'clientname' => ucfirst(strtolower($request->clientname)),
+            'units' =>$request->units,
+            'rec_id' => $increment_last_number,
+             'code' => $mynumber,
           ]);
           return redirect('/client')->with('message', "Client $post_service->clientname saved successfully");
     }

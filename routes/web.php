@@ -54,6 +54,10 @@ Route::resource('product', ProductController::class)->middleware('auth');
 
 
 Route::resource('vivo', VivoController::class)->middleware('auth');
+Route::get('quantityavailable/{id}', [VivoController::class, 'quantity'])->middleware('auth');
+Route::put('useunits/{id}', [VivoController::class, 'useunits'])->middleware('auth');
+
+
 
 Route::resource('vivorecord', VivorecordController::class)->middleware('auth');
 

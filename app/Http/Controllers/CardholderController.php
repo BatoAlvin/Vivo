@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cardholder;
 use Illuminate\Http\Request;
+use App\Helpers\Helper;
 
 class CardholderController extends Controller
 {
@@ -36,10 +37,42 @@ class CardholderController extends Controller
      */
     public function store(Request $request)
     {
+        // $generator = Helper::IDGenerator(new Cardholder,'rec_id','KH',5);
+        $data = Cardholder::orderBy('id','desc')->first();
+        if(!$data)
+        {
+            $increment_last_number = 1;
+            $mynumber = 'KHS0001';
+        }else{
+            $increment_last_number = $data->rec_id+1;
+            $last_number_length = strlen($increment_last_number);
+            if($last_number_length<2){
+                $mynumber = 'KHS000'.$increment_last_number;
+            }
+            else if($last_number_length<3){
+                $mynumber = 'KHS00'.$increment_last_number;
+            }
+            else if($last_number_length<4){
+                $mynumber = 'KHS0'.$increment_last_number;
+            }
+            else{
+                $mynumber = 'KHS'.$increment_last_number;
+            }
+        }
+
         $post_service = Cardholder::create([
-            'cardholder' => ucfirst(strtolower($request->cardholder)),
-          ]);
-          return redirect('/cardholder')->with('message', "$post_service saved successfully");
+             'cardholder' => ucfirst(strtolower($request->cardholder)),
+             'rec_id' => $increment_last_number,
+             'code' => $mynumber,
+            //  $student->rec_id = $request->input('rec_id'),
+
+           ]);
+
+        // $post_service = Cardholder::create([
+        //     'cardholder' => ucfirst(strtolower($request->cardholder)),
+
+        //   ]);
+          return redirect('/cardholder')->with('message', "$model saved successfully");
     }
 
     /**

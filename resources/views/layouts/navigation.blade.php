@@ -134,15 +134,30 @@
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
                                 class="icon icon-app-store"></i><span class="nav-text">Manage Card Number</span></a>
                         <ul aria-expanded="false">
-
-
                             <li><a href="{{ route('cardnumber.index')}}">Card Number</a></li>
+                        </ul>
+                    </li>
 
+                    <li class="nav-label">Clients</li>
+                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
+                                class="icon icon-app-store"></i><span class="nav-text">Manage Client</span></a>
+                        <ul aria-expanded="false">
+                            <li><a href="{{ route('client.index')}}">Client</a></li>
                         </ul>
                     </li>
 
 
 
+                    <li class="nav-label">Vivo</li>
+                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
+                                class="icon icon-app-store"></i><span class="nav-text">Manage Vivo</span></a>
+                        <ul aria-expanded="false">
+                            <li><a href="{{ route('vivo.index')}}">Vivo</a></li>
+                            </li>
+                        </ul>
+                    </li>
+
+                    
                     <li class="nav-label">Cardholder</li>
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
                                 class="icon icon-app-store"></i><span class="nav-text">Manage Cardholder</span></a>
@@ -193,14 +208,7 @@
 
 
 
-                    <li class="nav-label">Vivo</li>
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
-                                class="icon icon-app-store"></i><span class="nav-text">Manage Vivo</span></a>
-                        <ul aria-expanded="false">
-                            <li><a href="{{ route('vivo.index')}}">Vivo</a></li>
-                            </li>
-                        </ul>
-                    </li>
+
 
 
                     <li class="nav-label">Loans</li>

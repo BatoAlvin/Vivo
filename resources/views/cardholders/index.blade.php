@@ -51,13 +51,17 @@ color:#000;
                                  <input id='token' type="hidden" name="_token" value="{{ csrf_token() }}" />
 
 
+                                 <div class="form-group">
+                                    <label for="recipient-name" class="coll">djkds</label>
+                                    <input type="text" class="form-control"  name="rec_id"/>
+                                  </div>
 
                         <div class="form-group">
                          <label for="recipient-name" class="coll">Cardholder</label>
                          <input type="text" class="form-control"  name="cardholder" id="" required />
                        </div>
 
-            
+
 
                         <div class="modal-footer">
                       <button type="button" class="btn btn-danger" data-dismiss="modal" value="Reset" onclick="clearTexts()">Close</button>

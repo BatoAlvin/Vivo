@@ -6,6 +6,8 @@ use App\Models\Vivo;
 use App\Models\Clients;
 use App\Models\Cardnumber;
 use Illuminate\Http\Request;
+use DB;
+
 
 class VivoController extends Controller
 {
@@ -18,16 +20,32 @@ class VivoController extends Controller
     {
         $client = Clients::where('status',1)->get();
         $card = Cardnumber::where('status',1)->get();
-        $vivo = Vivo::with('client','card')->get();
+        $vivo = Vivo::with('client','card')->where('status',1)->get();
+        // return $unit = Vivo::where('status',1)->first('unit_id');
         $cdArr = [];
         foreach($card as $cd){
-        $check = Vivo::where('card_id',$cd->id)->get();
+        $check = Vivo::where('card_id',$cd->id)->where('status',1)->get();
         if (count($check)<1) {
             array_push($cdArr,$cd);
 }
         }
         return view('vivo.index',['client'=>$client,'card'=>$cdArr,'vivo'=>$vivo]);
     }
+
+
+    public function quantity($id){
+        $datas =  Client::where('id', $id)->first()->units;
+        return response()->json($datas);
+    }
+
+    public function useunits(Request $request, $id){
+        $units =  Vivo::where('id', $id)->first();
+        $units->unit_id = $units->unit_id - $request->units;
+        $units->save();
+        return Redirect()->back();
+    }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -51,6 +69,7 @@ class VivoController extends Controller
         $post_service = Vivo::create([
             'client_id' => $request->client_id,
             'card_id' => $request->card_id,
+            'unit_id' => $request->unit_id,
           ]);
           return redirect('/vivo')->with('message', " saved successfully");
     }
@@ -95,8 +114,12 @@ class VivoController extends Controller
      * @param  \App\Models\Vivo  $vivo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Vivo $vivo)
+    public function destroy($id)
     {
-        //
+        $members=Vivo::find($id);
+        $members->update([
+          'status'=>0,
+        ]);
+        return redirect('/vivo')->with('message', "Record removed successfully");
     }
 }

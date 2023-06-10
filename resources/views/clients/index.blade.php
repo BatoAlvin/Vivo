@@ -53,12 +53,15 @@ color:#000;
 
 
                         <div class="form-group">
-                         <label for="recipient-name" class="coll">Card Number</label>
+                         <label for="recipient-name" class="coll">Client Name</label>
                          <input type="text" class="form-control"  name="clientname" id="neyi" required />
                        </div>
 
 
-
+                        <div class="form-group">
+                         <label for="recipient-name" class="coll">Units</label>
+                         <input type="text" class="form-control"  name="units" id="" required />
+                       </div>
 
 
 
@@ -84,8 +87,8 @@ color:#000;
                     <table id="example2" class="display" style="width:100%">
                         <thead>
                             <tr>
-                                <th>Card Number</th>
-
+                                <th>Client Name</th>
+                                <th>Units</th>
                                 <th>View</th>
 
                             </tr>
@@ -94,7 +97,7 @@ color:#000;
                             @foreach ($client as $clients)
                             <tr>
                                 <td>{{$clients->clientname}}</td>
-
+                                <td>{{$clients->units}}</td>
                                 </td>
 
 

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('client_id');
             $table->string('card_id');
-
+            $table->string('unit_id');
             $table->timestamps();
         });
     }
