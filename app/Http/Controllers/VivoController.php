@@ -34,7 +34,7 @@ class VivoController extends Controller
 
 
     public function quantity($id){
-        $datas =  Client::where('id', $id)->first()->units;
+        $datas =  Clients::where('id', $id)->first()->units;
         return response()->json($datas);
     }
 

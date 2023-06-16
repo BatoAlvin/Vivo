@@ -8,6 +8,9 @@ use App\Http\Controllers\VivoController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\CardholderController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UnitController;
+use App\Http\Controllers\CardunitController;
+use App\Http\Controllers\CardattachmentController;
 use App\Http\Controllers\VivorecordController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\DashboardController;
@@ -53,8 +56,15 @@ Route::resource('cardholder', CardholderController::class)->middleware('auth');
 Route::resource('product', ProductController::class)->middleware('auth');
 
 
+Route::resource('unit', UnitController::class)->middleware('auth');
+
+Route::resource('cardattachment', CardattachmentController::class)->middleware('auth');
+
+Route::get('quantityavailable/{id}', [CardattachmentController::class, 'quantity'])->middleware('auth');
+
+
 Route::resource('vivo', VivoController::class)->middleware('auth');
-Route::get('quantityavailable/{id}', [VivoController::class, 'quantity'])->middleware('auth');
+// Route::get('quantityavailable/{id}', [VivoController::class, 'quantity'])->middleware('auth');
 Route::put('useunits/{id}', [VivoController::class, 'useunits'])->middleware('auth');
 
 
