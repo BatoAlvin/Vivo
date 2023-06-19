@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cardattachment;
 use App\Models\Cardunit;
 use App\Models\Cardnumber;
+use App\Models\Clients;
 use App\Models\Unit;
 use Illuminate\Http\Request;
 
@@ -19,7 +20,9 @@ class CardattachmentController extends Controller
     {
         $card = Cardnumber::where('status',1)->get();
         $unit = Unit::where('status',1)->get();
-        return view('cardattachments.index',['card'=>$card,'unit'=>$unit]);
+        $client = Clients::where('status',1)->get();
+        $cardattachment = Cardattachment::with('cardNumber','unitNumber','clientNumber')->get();
+        return view('cardattachments.index',['card'=>$card,'unit'=>$unit,'client'=>$client,'cardattachment'=>$cardattachment]);
 
     }
 
@@ -52,7 +55,12 @@ class CardattachmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $post_service = Cardattachment::create([
+            'client_id' => $request->client_id,
+            'card_id' => $request->card_id,
+            'unit_id' => $request->unit_id,
+          ]);
+          return redirect('/cardattachment')->with('message', " saved successfully");
     }
 
     /**

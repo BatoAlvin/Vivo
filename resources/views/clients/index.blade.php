@@ -58,16 +58,11 @@ color:#000;
                        </div>
 
 
-                        <div class="form-group">
-                         <label for="recipient-name" class="coll">Units</label>
-                         <input type="text" class="form-control"  name="units" id="" required />
-                       </div>
-
 
 
                         <div class="modal-footer">
                       <button type="button" class="btn btn-danger" data-dismiss="modal" value="Reset" onclick="clearTexts()">Close</button>
-                      <button type="submit" class="btn btn-primary">Add Card Number</button>
+                      <button type="submit" class="btn btn-primary">Add Client</button>
                     </div>
                       </form>
                 </div>
@@ -88,7 +83,7 @@ color:#000;
                         <thead>
                             <tr>
                                 <th>Client Name</th>
-                                <th>Units</th>
+
                                 <th>View</th>
 
                             </tr>
@@ -97,8 +92,7 @@ color:#000;
                             @foreach ($client as $clients)
                             <tr>
                                 <td>{{$clients->clientname}}</td>
-                                <td>{{$clients->units}}</td>
-                                </td>
+
 
 
                                 <td>
@@ -123,7 +117,7 @@ color:#000;
                                                             <input id='token' type="hidden" name="_token" value="{{ csrf_token() }}" />
 
                                                    <div class="form-group">
-                                                     <label for="recipient-name" class="col-form-label">Name</label>
+                                                     <label for="recipient-name" class="col-form-label">Client Name</label>
                                                      <input type="text" class="form-control"  name="cardnumber" required value="{{$clients->clientname}}">
                                                    </div>
 

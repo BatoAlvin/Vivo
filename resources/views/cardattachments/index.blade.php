@@ -34,7 +34,7 @@
 
                                 <div class="form-group">
                                     <label for="recipient-name" class="coll">Card Number</label>
-                                    <select class="form-control" name="cardnumber_id" id="source-field" required>
+                                    <select class="form-control" name="card_id" id="source-field" required>
                                         <option selected disabled value=''>Choose Card Number</option>
                                         @foreach ($card as $cards)
                                             <option value="{{ $cards->id }}">{{ $cards->cardnumber }}</option>
@@ -48,7 +48,7 @@
                                         {{$datas}}
                                     @endif
                                     <label for="recipient-name" class="coll">Unit Name</label>
-                                    <select class="form-control" name="units" id="sub_avail" required>
+                                    <select class="form-control" name="unit_id" id="sub_avail" required>
                                         <option selected disabled value=''>Choose Unit</option>
                                         @if(!empty($datas))
                                         <option value="{{ $option->value }}">{{ $option->text }}</option>
@@ -59,7 +59,16 @@
                                 </div>
 
 
-
+                                <div class="form-group">
+                                    <label for="recipient-name" class="coll">Client</label>
+                                    <select class="form-control" name="client_id">
+                                        <option selected disabled value=''>Choose Client</option>
+                                        @foreach ($client as $clients)
+                                            <option value="{{ $clients->id }}">{{ $clients->clientname }}</option>
+                                            <div id="editor-container" class="mb-1"></div>
+                                        @endforeach
+                                    </select>
+                                </div>
 
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-danger" data-dismiss="modal"
@@ -86,21 +95,23 @@
                                 <tr>
                                     <th>Card Number</th>
                                     <th>Unit Name</th>
+                                    <th>Client Name</th>
 
                                     <th>View</th>
 
                                 </tr>
                             </thead>
                             <tbody>
-                                {{-- @foreach ($cardunit as $cardunits)
+                                @foreach ($cardattachment as $cardattachments)
                                     <tr>
-                                        <td>{{ $cardunits->cardnumber ? $cardunits->cardnumber->cardnumber : '-' }}</td>
-                                        <td>{{ $cardunits->unitnumber ? $cardunits->unitnumber->unit_name : '-' }}</td>
+                                        <td>{{ $cardattachments->cardNumber ? $cardattachments->cardNumber->cardnumber : '-' }}</td>
+                                        <td>{{ $cardattachments->unitNumber ? $cardattachments->unitNumber->unit_name : '-' }}</td>
+                                        <td>{{ $cardattachments->clientNumber ? $cardattachments->clientNumber->clientname : '-' }}</td>
 
 
                                         </td>
                                     </tr>
-                                @endforeach --}}
+                                @endforeach
                             </tbody>
 
                         </table>

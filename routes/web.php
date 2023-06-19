@@ -53,6 +53,8 @@ Route::resource('project', ProjectController::class)->middleware('auth');
 Route::resource('cardholder', CardholderController::class)->middleware('auth');
 
 
+Route::resource('cardunit', CardunitController::class)->middleware('auth');
+
 Route::resource('product', ProductController::class)->middleware('auth');
 
 

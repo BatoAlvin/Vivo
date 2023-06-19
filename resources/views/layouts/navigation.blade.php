@@ -148,6 +148,23 @@
 
 
 
+                    <li class="nav-label">Card Unit</li>
+                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
+                                class="icon icon-app-store"></i><span class="nav-text">Manage Card Unit</span></a>
+                        <ul aria-expanded="false">
+                            <li><a href="{{ route('cardunit.index')}}">Card Unit</a></li>
+                        </ul>
+                    </li>
+
+
+                    <li class="nav-label">Card Attachment</li>
+                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
+                                class="icon icon-app-store"></i><span class="nav-text">Manage Card Attachment</span></a>
+                        <ul aria-expanded="false">
+                            <li><a href="{{ route('cardattachment.index')}}">Card Attachment</a></li>
+                        </ul>
+                    </li>
+
                     <li class="nav-label">Vivo</li>
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
                                 class="icon icon-app-store"></i><span class="nav-text">Manage Vivo</span></a>
@@ -157,7 +174,7 @@
                         </ul>
                     </li>
 
-                    
+
                     <li class="nav-label">Cardholder</li>
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
                                 class="icon icon-app-store"></i><span class="nav-text">Manage Cardholder</span></a>
