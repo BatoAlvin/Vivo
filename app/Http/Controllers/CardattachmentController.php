@@ -27,15 +27,15 @@ class CardattachmentController extends Controller
     }
 
     public function quantity($id){
-         $datas = Cardunit::where('cardnumber_id',$id)->where('status',1)->with('unitnumber')->get();
-          return response()->json($datas);
-          // if ($datas) {
-          //     $unitName = $datas->location;
-          //     return response()->json(['location' => $unitName]);
-          // } else {
-          //     return response()->json(['error' => 'Unit not found'], 404);
-          // }
-          }
+        $datas = Cardunit::where('cardnumber_id',$id)->where('status',1)->with('unitnumber')->get();
+         return response()->json($datas);
+         // if ($datas) {
+         //     $unitName = $datas->location;
+         //     return response()->json(['location' => $unitName]);
+         // } else {
+         //     return response()->json(['error' => 'Unit not found'], 404);
+         // }
+         }
 
     /**
      * Show the form for creating a new resource.
@@ -55,6 +55,7 @@ class CardattachmentController extends Controller
      */
     public function store(Request $request)
     {
+        
         $post_service = Cardattachment::create([
             'client_id' => $request->client_id,
             'card_id' => $request->card_id,

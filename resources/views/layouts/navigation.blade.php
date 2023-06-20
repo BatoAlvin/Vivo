@@ -146,7 +146,13 @@
                         </ul>
                     </li>
 
-
+                    <li class="nav-label">Units</li>
+                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
+                                class="icon icon-app-store"></i><span class="nav-text">Manage Units</span></a>
+                        <ul aria-expanded="false">
+                            <li><a href="{{ route('unit.index')}}">Units</a></li>
+                        </ul>
+                    </li>
 
                     <li class="nav-label">Card Unit</li>
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i

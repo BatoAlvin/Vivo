@@ -47,11 +47,11 @@
                                     @if(!empty($datas))
                                         {{$datas}}
                                     @endif
-                                    <label for="recipient-name" class="coll">Unit Name</label>
+                                    <label for="recipient-name" class="coll">Unit Nameuuu</label>
                                     <select class="form-control" name="unit_id" id="sub_avail" required>
                                         <option selected disabled value=''>Choose Unit</option>
                                         @if(!empty($datas))
-                                        <option value="{{ $option->value }}">{{ $option->text }}</option>
+                                        <option value="{{ $option->value }}">{{ $option->text }} {{ $option->value }} Alvin</option>
                                         <div id="editor-container" class="mb-1"></div>
                                         @endif
 
@@ -129,6 +129,8 @@
             xhr.open('GET', '/quantityavailable/' + sourceField, true);
             xhr.onload = function() {
                 if (this.status === 200) {
+                    console.log('datas',this.responseText);
+                    // alert(this.responseText)
                     var datas = JSON.parse(this.responseText); // Assuming the response is in JSON format
                     var selectField = document.getElementById('sub_avail');
 
@@ -138,7 +140,8 @@
                     // Create and append new options based on fetched records
                     datas.forEach(function(data) {
                         var option = document.createElement('option');
-                        option.value = data.id; // Set the value of the option
+                        option.value = data.unitnumber.id; // Set the value of the option
+                        // alert(data.id)
                         option.text = data.unitnumber.unit_name; // Set the text displayed in the option
                         selectField.appendChild(option);
                     });

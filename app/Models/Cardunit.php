@@ -11,7 +11,7 @@ class Cardunit extends Model
     protected $guarded = [];
 
     public function cardnumber(){
-        return $this->belongsTo(Cardnumber::class,'cardnumber_id','id');
+        return $this->belongsTo(Cardnumber::class,'cardnumber_id');
     }
 
     public function unitnumber(){
