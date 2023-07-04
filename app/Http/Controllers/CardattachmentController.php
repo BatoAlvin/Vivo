@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cardattachment;
+use App\Models\Cardattachmentpayment;
 use App\Models\Cardunit;
 use App\Models\Cardnumber;
 use App\Models\Clients;
@@ -21,10 +22,32 @@ class CardattachmentController extends Controller
         $card = Cardnumber::where('status',1)->get();
         $unit = Unit::where('status',1)->get();
         $client = Clients::where('status',1)->get();
-        $cardattachment = Cardattachment::with('cardNumber','unitNumber','clientNumber')->get();
+        $cardattachment = Cardattachment::with('cardNumber','unitNumber','clientNumber','counters')->where('status',1)->get();
         return view('cardattachments.index',['card'=>$card,'unit'=>$unit,'client'=>$client,'cardattachment'=>$cardattachment]);
 
     }
+
+
+    public function enroll(Request $request, $id)
+    {
+       $payment = Cardattachment::with('cardNumber','unitNumber','clientNumber')->find($id);
+       $user = Cardattachmentpayment::create([
+        'count_id' => $payment->id,
+        'cardnumberp' => $payment->card_id,
+        'unitnamex' => $payment->unit_id,
+        // 'descriptionx' => $payment->unit_id,
+        'clientnamex' => $payment->client_id,
+        'date' => $request->date,
+        'amountpaidx' => $request->amountpaidx,
+    ]);
+
+    // $payment->status=2;
+    // $payment->save();
+    // return redirect('/staff',[]);
+
+          return redirect('/cardattachment')->with('message', "Payment saved successfully");
+    }
+
 
     public function quantity($id){
         $datas = Cardunit::where('cardnumber_id',$id)->where('status',1)->with('unitnumber')->get();
@@ -55,7 +78,7 @@ class CardattachmentController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $post_service = Cardattachment::create([
             'client_id' => $request->client_id,
             'card_id' => $request->card_id,
@@ -70,9 +93,11 @@ class CardattachmentController extends Controller
      * @param  \App\Models\Cardattachment  $cardattachment
      * @return \Illuminate\Http\Response
      */
-    public function show(Cardattachment $cardattachment)
+    public function show($id)
     {
-        //
+        $payment = Cardattachment::with('cardNumber','unitNumber','clientNumber')->find($id);
+
+       return view('cardattachments.cardattachment',['payment'=>$payment]);
     }
 
     /**

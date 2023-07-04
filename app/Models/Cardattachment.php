@@ -22,4 +22,8 @@ class Cardattachment extends Model
     public function clientNumber(){
         return $this->belongsTo(Clients::class,'client_id','id');
     }
+
+    public function counters(){
+        return $this->hasMany(Cardattachmentpayment::class,'count_id','id');
+    }
 }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 19, 2023 at 08:25 AM
+-- Generation Time: Jul 04, 2023 at 04:02 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -24,6 +24,33 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `cardattachmentpayments`
+--
+
+CREATE TABLE `cardattachmentpayments` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `cardnumberp` varchar(255) NOT NULL,
+  `unitnamex` varchar(255) DEFAULT NULL,
+  `descriptionx` varchar(255) DEFAULT NULL,
+  `clientnamex` varchar(255) DEFAULT NULL,
+  `amountpaidx` varchar(255) NOT NULL,
+  `date` date DEFAULT NULL,
+  `count_id` bigint(20) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `cardattachmentpayments`
+--
+
+INSERT INTO `cardattachmentpayments` (`id`, `cardnumberp`, `unitnamex`, `descriptionx`, `clientnamex`, `amountpaidx`, `date`, `count_id`, `created_at`, `updated_at`) VALUES
+(6, '5', '4', NULL, '7', '7000000', '2023-07-02', 17, '2023-07-03 10:57:00', '2023-07-03 10:57:00'),
+(7, '5', '4', NULL, '8', '89000', '2023-07-27', 16, '2023-07-03 11:42:17', '2023-07-03 11:42:17');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `cardattachments`
 --
 
@@ -32,6 +59,7 @@ CREATE TABLE `cardattachments` (
   `client_id` varchar(255) NOT NULL,
   `card_id` varchar(255) NOT NULL,
   `unit_id` varchar(255) NOT NULL,
+  `status` int(11) NOT NULL DEFAULT 1,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -40,9 +68,11 @@ CREATE TABLE `cardattachments` (
 -- Dumping data for table `cardattachments`
 --
 
-INSERT INTO `cardattachments` (`id`, `client_id`, `card_id`, `unit_id`, `created_at`, `updated_at`) VALUES
-(1, '1', '1', '1', '2023-06-17 07:04:32', '2023-06-17 07:04:32'),
-(2, '2', '2', '3', '2023-06-17 07:30:08', '2023-06-17 07:30:08');
+INSERT INTO `cardattachments` (`id`, `client_id`, `card_id`, `unit_id`, `status`, `created_at`, `updated_at`) VALUES
+(14, '7', '5', '4', 2, '2023-06-20 03:01:20', '2023-07-03 10:29:43'),
+(15, '8', '5', '5', 1, '2023-06-20 03:18:51', '2023-06-20 03:18:51'),
+(16, '8', '5', '4', 1, '2023-07-03 10:41:46', '2023-07-03 10:41:46'),
+(17, '7', '5', '4', 2, '2023-07-03 10:55:44', '2023-07-03 10:57:01');
 
 -- --------------------------------------------------------
 
@@ -75,7 +105,7 @@ INSERT INTO `cardholders` (`id`, `cardholder`, `status`, `created_at`, `updated_
 
 CREATE TABLE `cardnumbers` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `cardnumber` int(11) NOT NULL,
+  `cardnumber` varchar(255) NOT NULL,
   `status` int(11) NOT NULL DEFAULT 1,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -86,10 +116,8 @@ CREATE TABLE `cardnumbers` (
 --
 
 INSERT INTO `cardnumbers` (`id`, `cardnumber`, `status`, `created_at`, `updated_at`) VALUES
-(1, 7654, 1, '2023-06-02 08:51:50', '2023-06-02 08:51:50'),
-(2, 12357, 1, '2023-06-02 08:51:59', '2023-06-02 08:51:59'),
-(3, 86688, 1, '2023-06-02 08:52:08', '2023-06-02 08:52:08'),
-(4, 89087, 1, '2023-06-16 10:05:39', '2023-06-16 10:05:39');
+(5, 'T1000', 1, '2023-06-19 07:02:34', '2023-06-19 07:02:34'),
+(6, 'T1002', 1, '2023-06-19 07:03:17', '2023-06-19 07:03:17');
 
 -- --------------------------------------------------------
 
@@ -111,9 +139,8 @@ CREATE TABLE `cardunits` (
 --
 
 INSERT INTO `cardunits` (`id`, `cardnumber_id`, `unitnumber_id`, `status`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 1, '2023-06-16 09:40:53', '2023-06-16 09:40:53'),
-(2, 1, 2, 1, '2023-06-16 09:48:50', '2023-06-16 09:48:50'),
-(3, 2, 1, 1, '2023-06-16 09:49:02', '2023-06-16 09:49:02');
+(5, 5, 4, 1, '2023-06-19 07:05:56', '2023-06-19 07:05:56'),
+(6, 5, 5, 1, '2023-06-20 03:18:36', '2023-06-20 03:18:36');
 
 -- --------------------------------------------------------
 
@@ -137,12 +164,8 @@ CREATE TABLE `clients` (
 --
 
 INSERT INTO `clients` (`id`, `rec_id`, `code`, `clientname`, `units`, `status`, `created_at`, `updated_at`) VALUES
-(1, '1', 'KHS0001', 'Lenovo', '100', 1, '2023-06-02 08:58:02', '2023-06-02 08:58:02'),
-(2, '2', 'KHS0002', 'Kool', '90', 1, '2023-06-05 06:31:13', '2023-06-05 06:31:13'),
-(3, '3', 'KHS0003', 'Jerry', '70', 1, '2023-06-05 06:31:41', '2023-06-05 06:31:41'),
-(4, '4', 'KHS0004', 'Frank', '30', 1, '2023-06-10 05:05:46', '2023-06-10 05:05:46'),
-(5, '5', 'KHS0005', 'Kelly', '20', 1, '2023-06-10 05:09:20', '2023-06-10 05:09:20'),
-(6, '6', 'KHS0006', 'Grey', '100', 1, '2023-06-10 06:21:51', '2023-06-10 06:21:51');
+(7, '1', 'KHS0001', 'Jack', NULL, 1, '2023-06-19 07:02:51', '2023-06-19 07:02:51'),
+(8, '2', 'KHS0002', 'Tom', NULL, 1, '2023-06-19 07:03:02', '2023-06-19 07:03:02');
 
 -- --------------------------------------------------------
 
@@ -284,9 +307,9 @@ CREATE TABLE `units` (
 --
 
 INSERT INTO `units` (`id`, `unit_name`, `description`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Unit A', 'within 20km', 1, '2023-06-16 09:07:56', '2023-06-16 09:07:56'),
-(2, 'Unit B', 'within 70km', 1, '2023-06-16 09:46:25', '2023-06-16 09:46:25'),
-(3, 'Unit C', 'within 100km', 1, '2023-06-16 09:46:43', '2023-06-16 09:46:43');
+(4, 'Greenyard', 'within 20km', 1, '2023-06-19 07:05:15', '2023-06-19 07:05:15'),
+(5, 'Ntoroko', 'within 50km', 1, '2023-06-19 07:05:41', '2023-06-19 07:05:41'),
+(6, 'Kanda', 'within 200km', 1, '2023-06-19 07:05:41', '2023-06-19 07:05:41');
 
 -- --------------------------------------------------------
 
@@ -359,6 +382,12 @@ INSERT INTO `vivos` (`id`, `client_id`, `card_id`, `unit_id`, `status`, `created
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `cardattachmentpayments`
+--
+ALTER TABLE `cardattachmentpayments`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `cardattachments`
@@ -465,10 +494,16 @@ ALTER TABLE `vivos`
 --
 
 --
+-- AUTO_INCREMENT for table `cardattachmentpayments`
+--
+ALTER TABLE `cardattachmentpayments`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT for table `cardattachments`
 --
 ALTER TABLE `cardattachments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `cardholders`
@@ -480,19 +515,19 @@ ALTER TABLE `cardholders`
 -- AUTO_INCREMENT for table `cardnumbers`
 --
 ALTER TABLE `cardnumbers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `cardunits`
 --
 ALTER TABLE `cardunits`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `clients`
 --
 ALTER TABLE `clients`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -534,7 +569,7 @@ ALTER TABLE `registrations`
 -- AUTO_INCREMENT for table `units`
 --
 ALTER TABLE `units`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `users`

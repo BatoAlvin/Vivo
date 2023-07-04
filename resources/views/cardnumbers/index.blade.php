@@ -85,7 +85,6 @@ color:#000;
                         <thead>
                             <tr>
                                 <th>Card Number</th>
-
                                 <th>View</th>
 
                             </tr>
@@ -95,10 +94,8 @@ color:#000;
                             <tr>
                                 <td>{{$cards->cardnumber}}</td>
 
-                                </td>
-
-
                                 <td>
+                                    <div style="display:center;">
                                     <a href="{{url('cardnumber/'.$cards->id )}}"<button class="btn btn-success"><i class="fa fa-eye" style="color:#fff;"></i></button></a>
                                     <button type="button" class="btn btn-primary" data-toggle="modal"  data-target="#exampleModal{{ $cards->id }}"><i class='fa fa-edit'>
                                        </i>
@@ -137,6 +134,7 @@ color:#000;
                                              </div>
                                            </div>
                                          </div>
+                                        </div>
 
 
 

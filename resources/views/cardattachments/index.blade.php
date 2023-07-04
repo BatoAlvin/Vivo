@@ -96,7 +96,7 @@
                                     <th>Card Number</th>
                                     <th>Unit Name</th>
                                     <th>Client Name</th>
-
+                                    <th>Count</th>
                                     <th>View</th>
 
                                 </tr>
@@ -107,6 +107,14 @@
                                         <td>{{ $cardattachments->cardNumber ? $cardattachments->cardNumber->cardnumber : '-' }}</td>
                                         <td>{{ $cardattachments->unitNumber ? $cardattachments->unitNumber->unit_name : '-' }}</td>
                                         <td>{{ $cardattachments->clientNumber ? $cardattachments->clientNumber->clientname : '-' }}</td>
+                                        <td>{{ $cardattachments->counters ? $cardattachments->counters->count() : '-' }}</td>
+
+
+                                        <td>
+                                            <a href="{{url('cardattachment/'.$cardattachments->id )}}" <button class="btn btn-success"><i class="fa fa-eye" style="color:#fff;"></i></button></a>
+                                            <button type="button" class="btn btn-primary" data-toggle="modal"  data-target="#exampleModal{{ $cardattachments->id }}"><i class='fa fa-edit'>
+                                               </i>
+                                               </button>
 
 
                                         </td>

@@ -171,6 +171,17 @@
                         </ul>
                     </li>
 
+
+                    <li class="nav-label">Card Attachment Payment</li>
+                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
+                                class="icon icon-app-store"></i><span class="nav-text">Manage Card Attachment Payment</span></a>
+                        <ul aria-expanded="false">
+                            <li><a href="{{ route('cardattachmentpayment.index')}}">Card Attachment Payment</a></li>
+                        </ul>
+                    </li>
+
+
+
                     <li class="nav-label">Vivo</li>
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
                                 class="icon icon-app-store"></i><span class="nav-text">Manage Vivo</span></a>
