@@ -23,7 +23,8 @@ class CardattachmentController extends Controller
         $unit = Unit::where('status',1)->get();
         $client = Clients::where('status',1)->get();
         $cardattachment = Cardattachment::with('cardNumber','unitNumber','clientNumber','counters')->where('status',1)->get();
-        return view('cardattachments.index',['card'=>$card,'unit'=>$unit,'client'=>$client,'cardattachment'=>$cardattachment]);
+        $cardamount = Cardattachmentpayment::get();
+        return view('cardattachments.index',['card'=>$card,'cardamount'=>$cardamount,'unit'=>$unit,'client'=>$client,'cardattachment'=>$cardattachment]);
 
     }
 

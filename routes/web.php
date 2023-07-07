@@ -11,6 +11,8 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\CardunitController;
 use App\Http\Controllers\CardattachmentController;
+use App\Http\Controllers\CardattachmentlistController;
+use App\Http\Controllers\CardattachmentsummaryController;
 use App\Http\Controllers\CardattachmentpaymentController;
 use App\Http\Controllers\VivorecordController;
 use App\Http\Controllers\RegistrationController;
@@ -68,6 +70,8 @@ Route::post('enroll/{id}', [CardattachmentController::class, 'enroll'])->name('e
 
 
 Route::resource('cardattachmentpayment', CardattachmentpaymentController::class)->middleware('auth');
+Route::resource('cardattachmentsummary', CardattachmentsummaryController::class)->middleware('auth');
+Route::resource('cardattachmentlist', CardattachmentlistController::class)->middleware('auth');
 
 
 Route::resource('vivo', VivoController::class)->middleware('auth');

@@ -13,6 +13,7 @@ use App\Models\Registration;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
+
 class VivorecordController extends Controller
 {
     /**
