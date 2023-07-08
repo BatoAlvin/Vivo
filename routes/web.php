@@ -49,6 +49,7 @@ Route::middleware('auth')->group(function () {
 //Cardnumber
 Route::resource('cardnumber', CardnumberController::class)->middleware('auth');
 
+
 Route::resource('client', ClientsController::class)->middleware('auth');
 
 Route::resource('project', ProjectController::class)->middleware('auth');

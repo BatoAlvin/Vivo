@@ -85,6 +85,7 @@ color:#000;
                         <thead>
                             <tr>
                                 <th>Card Number</th>
+                                <th>Amount</th>
                                 <th>View</th>
 
                             </tr>
@@ -92,7 +93,8 @@ color:#000;
                         <tbody>
                             @foreach ($card as $cards)
                             <tr>
-                                <td>{{$cards->cardnumber}}</td>
+                                <td>{{$cards->card}}</td>
+                                <td>{{$cards->total}}</td>
 
                                 <td>
                                     <div style="display:center;">
@@ -118,7 +120,7 @@ color:#000;
 
                                                    <div class="form-group">
                                                      <label for="recipient-name" class="col-form-label">Name</label>
-                                                     <input type="text" class="form-control"  name="cardnumber" required value="{{$cards->cardnumber}}">
+                                                     <input type="text" class="form-control"  name="cardnumber" required value="{{$cards->card}}">
                                                    </div>
 
 

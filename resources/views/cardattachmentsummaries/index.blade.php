@@ -26,17 +26,17 @@
                         <table id="example2" class="display" style="width:100%">
                             <thead>
                                 <tr>
-                                    {{-- <th>Card Number</th> --}}
+                                <th>Card Number</th>
                                     <th>Amount</th>
-                                    
+
 
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($savingsummary as $savingsummaries)
+                                @foreach ($card as $cards)
                                     <tr>
-                                        {{-- <td>{{$savingsummaries->cardnumberp}}</td> --}}
-                                        <td>{{ number_format($savingsummaries['amountpaidx'])}}</td>
+                                       <td> {{$cards->card}}</td>
+                                        <td>{{ number_format($cards->total)}}</td>
 
                                     </tr>
                                 @endforeach

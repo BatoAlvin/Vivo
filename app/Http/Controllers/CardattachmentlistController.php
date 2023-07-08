@@ -46,9 +46,11 @@ class CardattachmentlistController extends Controller
      * @param  \App\Models\Cardattachmentlist  $cardattachmentlist
      * @return \Illuminate\Http\Response
      */
-    public function show(Cardattachmentlist $cardattachmentlist)
+    public function show($id)
     {
-        //
+      return  $cardattachmentlist = Cardattachmentpayment::with('cardNumbers','unitNumbers','clientNumbers')->find($id);
+
+       return view('cardattachmentlists.cardattachmentlist',['cardattachmentlist'=>$cardattachmentlist]);
     }
 
     /**

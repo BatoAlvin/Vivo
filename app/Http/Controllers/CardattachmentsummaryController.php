@@ -6,6 +6,7 @@ use App\Models\Cardattachmentsummary;
 use App\Models\Cardattachmentpayment;
 use App\Models\Cardattachment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CardattachmentsummaryController extends Controller
 {
@@ -16,15 +17,15 @@ class CardattachmentsummaryController extends Controller
      */
     public function index()
     {
-        $membersavings = [];
-        $members = Cardattachment::all();
+        $card = DB::table('cardattachmentpayments')
+        ->join('cardnumbers', 'cardnumbers.id', 'cardattachmentpayments.cardnumberp')
+        ->select('cardnumbers.cardnumber as card')
+        ->selectRaw('cardnumbers.id as id')
+        ->selectRaw('SUM(cardattachmentpayments.amountpaidx) as total')
+        ->groupBy('cardnumbers.cardnumber', 'cardnumbers.id') // Include cardnumbers.id in the GROUP BY clause
+        ->get();
+        return view('cardattachmentsummaries.index')->with('card',$card);
 
-        // $members = Familymembers::where('status',1)->get();
-        foreach ($members as $member) {
-        $savings = Cardattachmentpayment::with('cardNumbers')->where(['cardnumberp'=>$member->id])->sum('amountpaidx');
-        array_push($membersavings,['id'=>$member->id,'cardnumberp'=>$member->client_id,'amountpaidx'=>$savings]);
-              }
-        return view('cardattachmentsummaries.index',['savingsummary'=>$membersavings]);
     }
 
     /**

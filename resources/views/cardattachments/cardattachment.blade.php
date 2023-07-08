@@ -77,8 +77,7 @@
          </div>
 
          <div class="col-lg-12">
-            <button type="reset" class="btn btn-danger"
-            value="Reset">Close</button>
+          <a href="/cardattachment" class="btn btn-secondary">Back </a>
         <button type="submit" class="btn btn-primary">Add Payment
             </button>
             </div>

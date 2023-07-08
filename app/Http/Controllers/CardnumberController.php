@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cardnumber;
+use App\Models\Cardattachmentpayment;
 use Illuminate\Http\Request;
+
 
 class CardnumberController extends Controller
 {
@@ -17,6 +19,14 @@ class CardnumberController extends Controller
         $card = Cardnumber::where('status',1)->get();
             return view('cardnumbers.index')->with('card',$card);
     }
+
+    public function summary()
+    {
+
+    }
+
+
+
 
     /**
      * Show the form for creating a new resource.

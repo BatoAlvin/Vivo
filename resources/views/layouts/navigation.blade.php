@@ -168,17 +168,13 @@
                                 class="icon icon-app-store"></i><span class="nav-text">Manage Card Attachment</span></a>
                         <ul aria-expanded="false">
                             <li><a href="{{ route('cardattachment.index')}}">Card Attachment</a></li>
+                            <li><a href="{{ route('cardattachmentlist.index')}}">Card Attachment List</a></li>
+                            <li><a href="{{ route('cardattachmentsummary.index')}}">Card Attachment Summary</a></li>
                         </ul>
                     </li>
 
 
-                    <li class="nav-label">Card Attachment Payment</li>
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
-                                class="icon icon-app-store"></i><span class="nav-text">Manage Card Attachment Payment</span></a>
-                        <ul aria-expanded="false">
-                            <li><a href="{{ route('cardattachmentpayment.index')}}">Card Attachment Payment</a></li>
-                        </ul>
-                    </li>
+
 
 
 

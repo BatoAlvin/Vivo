@@ -98,7 +98,7 @@
                                     <th>Unit Name</th>
                                     <th>Client Name</th>
                                     <th>Count</th>
-                                    <th>Amount</th>
+                                    {{-- <th>Amount</th> --}}
                                     <th>View</th>
 
                                 </tr>
@@ -114,9 +114,9 @@
                                         </td>
                                         <td>{{ $cardattachments->counters ? $cardattachments->counters->count() : '-' }}
                                         </td>
-                                        @foreach ($cardamount as $cardamounts)
-                                            <td>{{ $cardamounts->amountpaidx }}</td>
-                                        @endforeach
+
+                                            {{-- <td>{{ $cardamounts->amountpaidx }}</td> --}}
+
 
 
                                         <td>

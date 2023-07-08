@@ -29,7 +29,7 @@
                                     <th>Card Number</th>
                                     <th>Unit Name</th>
                                     <th>Client Name</th>
-                                    <th>Payments</th>
+                                    <th>Amount</th>
                                     <th>Date</th>
                                     <th>Created At</th>
                                     <th>View</th>
