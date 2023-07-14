@@ -60,6 +60,13 @@
            </div>
          </div>
 
+         <div class="col-lg-3 col-sm-6 col-12">
+            <div class="form-group">
+             <label for="recipient-name">Amount </label>
+             <input type="text" class="form-control"  name="amountx" id="amounts" value="{{ $payment->amount }}" required />
+           </div>
+         </div>
+
 
         <div class="col-lg-3 col-sm-6 col-12">
             <div class="form-group">
@@ -72,9 +79,18 @@
          <div class="col-lg-3 col-sm-6 col-12">
             <div class="form-group">
              <label for="recipient-name">Amount</label>
-             <input type="text" class="form-control"  name="amountpaidx" required />
+             <input type="text" class="form-control"  name="amountpaidx" id="change" onkeyup="mult(this.value);" required />
            </div>
          </div>
+
+
+         <div class="col-lg-3 col-sm-6 col-12">
+            <div class="form-group">
+             <label for="recipient-name">Balance</label>
+             <input type="text" class="form-control" id="changetotal" name="balance" readonly />
+           </div>
+         </div>
+
 
          <div class="col-lg-12">
           <a href="/cardattachment" class="btn btn-secondary">Back </a>
@@ -88,5 +104,14 @@
  </div>
 </div>
 
+
+<script>
+    function mult(value){
+        var dt = value-document.getElementById('amounts').value;
+        document.getElementById('changetotal').value=dt;
+
+    }
+
+</script>
      @endsection
 

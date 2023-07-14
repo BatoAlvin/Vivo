@@ -47,7 +47,7 @@
                                     @if (!empty($datas))
                                         {{ $datas }}
                                     @endif
-                                    <label for="recipient-name" class="coll">Unit Nameuuu</label>
+                                    <label for="recipient-name" class="coll">Unit Name</label>
                                     <select class="form-control" name="unit_id" id="sub_avail" required>
                                         <option selected disabled value=''>Choose Unit</option>
                                         @if (!empty($datas))
@@ -70,6 +70,13 @@
                                         @endforeach
                                     </select>
                                 </div>
+
+
+                                <div class="form-group">
+                                    <label for="recipient-name" class="coll">Amount</label>
+                                  <input type="number" name="amount" required/>
+                                </div>
+
 
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-danger" data-dismiss="modal"
@@ -98,7 +105,7 @@
                                     <th>Unit Name</th>
                                     <th>Client Name</th>
                                     <th>Count</th>
-                                    {{-- <th>Amount</th> --}}
+                                    <th>Amount</th>
                                     <th>View</th>
 
                                 </tr>
@@ -115,7 +122,7 @@
                                         <td>{{ $cardattachments->counters ? $cardattachments->counters->count() : '-' }}
                                         </td>
 
-                                            {{-- <td>{{ $cardamounts->amountpaidx }}</td> --}}
+                                            <td>{{ $cardattachments->amount }}</td>
 
 
 

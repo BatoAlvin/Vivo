@@ -84,6 +84,7 @@ class CardattachmentController extends Controller
             'client_id' => $request->client_id,
             'card_id' => $request->card_id,
             'unit_id' => $request->unit_id,
+            'amount' => $request->amount,
           ]);
           return redirect('/cardattachment')->with('message', " saved successfully");
     }
