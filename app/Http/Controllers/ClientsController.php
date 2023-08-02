@@ -73,9 +73,10 @@ class ClientsController extends Controller
      * @param  \App\Models\Clients  $clients
      * @return \Illuminate\Http\Response
      */
-    public function show(Clients $clients)
+    public function show($id)
     {
-        //
+        $client = Clients::find($id);
+        return view('clients.client')->with('client', $client);
     }
 
     /**
@@ -96,9 +97,17 @@ class ClientsController extends Controller
      * @param  \App\Models\Clients  $clients
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Clients $clients)
+    public function update(Request $request,  $clients)
     {
-        //
+        $check = Clients::where('id',$id)->first();
+        if ($check) {
+            $service = Clients::where('id',$id)->update([
+                 'clientname' => $request->clientname,
+                 'units' => $request->units,
+
+            ]);
+        return redirect('/unit')->with('message', "Client updated successfully");
+    }
     }
 
     /**

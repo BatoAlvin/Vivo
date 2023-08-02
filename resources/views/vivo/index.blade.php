@@ -134,9 +134,9 @@ color:#000;
                             <tr>
                               <td>{{$loop->iteration}}</td>
                                 <td>
-                                    {{$vivos->client->clientname}}</td>
+                                    {{$vivos->client?$vivos->client?->clientname:"-"}}</td>
 
-                                <td>{{$vivos->card->cardnumber}}</td>
+                                <td>{{$vivos->card?$vivos->card->cardnumber:"-"}}</td>
                                 <td>{{$vivos->unit_id}}</td>
 
                                 </td>
@@ -153,7 +153,7 @@ color:#000;
                                            <div class="modal-dialog" role="document">
                                              <div class="modal-content">
                                                <div class="modal-header">
-                                                 <h5 class="modal-title" id="exampleModalLabel">Edit {{ $vivos->client->clientname }}</h5>
+                                                 <h5 class="modal-title" id="exampleModalLabel">Edit {{ $vivos->client?$vivos->client?->clientname:"-" }}</h5>
                                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                    <span aria-hidden="true">&times;</span>
                                                  </button>
@@ -166,12 +166,12 @@ color:#000;
 
                                                    <div class="form-group">
                                                      <label for="recipient-name" class="col-form-label">Client</label>
-                                                     <input type="text" class="form-control"  name="name" required value="{{$vivos->client->clientname}}">
+                                                     <input type="text" class="form-control"  name="name" required value="{{$vivos->client?$vivos->client?->clientname:"-"}}">
                                                    </div>
 
                                                    <div class="form-group">
                                                     <label for="recipient-name" class="col-form-label">Card Number</label>
-                                                    <input type="text" class="form-control"  name="amount" required value="{{$vivos->card->cardnumber}}">
+                                                    <input type="text" class="form-control"  name="amount" required value="{{$vivos->card?$vivos->card->cardnumber:"-"}}">
                                                   </div>
 
 
@@ -211,7 +211,7 @@ color:#000;
                                         <div class="modal-dialog" role="document">
                                           <div class="modal-content">
                                             <div class="modal-header">
-                                              <h5 class="modal-title" id="exampleModalLabel">Edit {{ $vivos->client->clientname }}</h5>
+                                              <h5 class="modal-title" id="exampleModalLabel">Edit {{ $vivos->client?$vivos->client?->clientname:"-" }}</h5>
                                               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                               </button>

@@ -85,7 +85,7 @@ color:#000;
                         <thead>
                             <tr>
                                 <th>Card Number</th>
-                                <th>Amount</th>
+
                                 <th>View</th>
 
                             </tr>
@@ -93,13 +93,13 @@ color:#000;
                         <tbody>
                             @foreach ($card as $cards)
                             <tr>
-                                <td>{{$cards->card}}</td>
-                                <td>{{$cards->total}}</td>
+                                <td>{{$cards->cardnumber}}</td>
+
 
                                 <td>
-                                    <div style="display:center;">
-                                    <a href="{{url('cardnumber/'.$cards->id )}}"<button class="btn btn-success"><i class="fa fa-eye" style="color:#fff;"></i></button></a>
-                                    <button type="button" class="btn btn-primary" data-toggle="modal"  data-target="#exampleModal{{ $cards->id }}"><i class='fa fa-edit'>
+                                    <div style="display:flex;">
+                                    <a href="{{url('cardnumber/'.$cards->id )}}" style="margin-right: 10px;" <button class="btn btn-success"><i class="fa fa-eye" style="color:#fff;"></i></button></a>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" style="margin-right: 10px;" data-target="#exampleModal{{ $cards->id }}"><i class='fa fa-edit'>
                                        </i>
                                        </button>
 
@@ -120,7 +120,7 @@ color:#000;
 
                                                    <div class="form-group">
                                                      <label for="recipient-name" class="col-form-label">Name</label>
-                                                     <input type="text" class="form-control"  name="cardnumber" required value="{{$cards->card}}">
+                                                     <input type="text" class="form-control"  name="cardnumber" required value="{{$cards->cardnumber}}">
                                                    </div>
 
 
@@ -136,7 +136,7 @@ color:#000;
                                              </div>
                                            </div>
                                          </div>
-                                        </div>
+
 
 
 
@@ -144,7 +144,9 @@ color:#000;
                                         {{csrf_field()}}
                                         <input name="_method" type="hidden" value="DELETE">
                                         <button class="btn btn-danger"  onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i></button>
-                                        </form>
+
+                                    </form>
+                                </div>
                                     </td>
                             </tr>
                             @endforeach

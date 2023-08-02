@@ -96,8 +96,9 @@ color:#000;
 
 
                                 <td>
-                                    <a href="{{url('client/'.$clients->id )}}"<button class="btn btn-success"><i class="fa fa-eye" style="color:#fff;"></i></button></a>
-                                    <button type="button" class="btn btn-primary" data-toggle="modal"  data-target="#exampleModal{{ $clients->id }}"><i class='fa fa-edit'>
+                                    <div style="display: flex">
+                                    <a href="{{url('client/'.$clients->id )}}" style="margin-right: 10px;" <button class="btn btn-success"><i class="fa fa-eye" style="color:#fff;"></i></button></a>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" style="margin-right: 10px;"  data-target="#exampleModal{{ $clients->id }}"><i class='fa fa-edit'>
                                        </i>
                                        </button>
 
@@ -123,7 +124,7 @@ color:#000;
 
 
 
-
+                                                  
 
                                                    <div class="modal-footer">
                                                  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -142,6 +143,7 @@ color:#000;
                                         <input name="_method" type="hidden" value="DELETE">
                                         <button class="btn btn-danger"  onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i></button>
                                         </form>
+                                    </div>
                                     </td>
                             </tr>
                             @endforeach

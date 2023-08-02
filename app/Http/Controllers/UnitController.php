@@ -49,9 +49,10 @@ class UnitController extends Controller
      * @param  \App\Models\Unit  $unit
      * @return \Illuminate\Http\Response
      */
-    public function show(Unit $unit)
+    public function show($id)
     {
-        //
+        $unit = Unit::find($id);
+        return view('units.unit')->with('unit', $unit);
     }
 
     /**
@@ -72,9 +73,17 @@ class UnitController extends Controller
      * @param  \App\Models\Unit  $unit
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Unit $unit)
+    public function update(Request $request,  $unit)
     {
-        //
+        $check = Unit::where('id',$id)->first();
+        if ($check) {
+            $service = Unit::where('id',$id)->update([
+                 'unit_name' => $request->unit_name,
+                 'description' => $request->description,
+
+            ]);
+        return redirect('/unit')->with('message', "Unit updated successfully");
+    }
     }
 
     /**

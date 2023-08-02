@@ -80,7 +80,6 @@
                                 <tr>
                                     <th>Card Number</th>
                                     <th>Unit Name</th>
-
                                     <th>View</th>
 
                                 </tr>
@@ -96,9 +95,10 @@
 
 
                                         <td>
-                                            <a href="{{ url('unit/' . $units->id) }}"<button class="btn btn-success"><i
+                                            <div style="display: flex">
+                                            <a href="{{ url('unit/' . $units->id) }}" style="margin-right: 10px;" <button class="btn btn-success"><i
                                                     class="fa fa-eye" style="color:#fff;"></i></button></a>
-                                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                            <button type="button" class="btn btn-primary" style="margin-right: 10px;" data-toggle="modal"
                                                 data-target="#exampleModal{{ $units->id }}"><i class='fa fa-edit'>
                                                 </i>
                                             </button>
@@ -155,6 +155,7 @@
                                                     onclick="return confirm('Are you sure?')"><i
                                                         class="fa fa-trash"></i></button>
                                             </form>
+                                        </div>
                                         </td>
                                     </tr>
                                 @endforeach

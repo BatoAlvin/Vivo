@@ -96,8 +96,12 @@ class CardunitController extends Controller
      * @param  \App\Models\cr  $cr
      * @return \Illuminate\Http\Response
      */
-    public function destroy(cr $cr)
+    public function destroy($id)
     {
-        //
+        $members=Client::find($id);
+        $members->update([
+          'status'=>0,
+        ]);
+        return redirect('/unit')->with('message', "Unit removed successfully");
     }
 }
